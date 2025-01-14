@@ -1,0 +1,1048 @@
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import perdenserImage from "../assets/images/perdenser.jpg";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+import proenderPDF from "../assets/pdfs/proender.pdf";
+import perdenserPDF from "../assets/pdfs/perdenser.pdf";
+import freepassPDF from "../assets/pdfs/freepass.pdf";
+
+function Products() {
+  const [selectedProduct, setSelectedProduct] = useState("proender");
+  const [activeTab, setActiveTab] = useState("specifications");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
+
+  // Sayfalama için yardımcı fonksiyonlar
+  const getCurrentItems = (items) => {
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    return items.slice(indexOfFirstItem, indexOfLastItem);
+  };
+
+  const totalPages = (items) => Math.ceil(items.length / itemsPerPage);
+
+  const products = {
+    proender: {
+      title: "Proender®",
+      subtitle: "Disposable Embolic Protection Device",
+      description:
+        "This product is applied for carotid artery intervention and provides protection for patients with distal embolization of blood vessels.",
+      specs: [
+        {
+          catalogNo: "TJEP03-190",
+          diameter: "3",
+          length: "190",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP04-190",
+          diameter: "4",
+          length: "190",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP05-190",
+          diameter: "5",
+          length: "190",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP06-190",
+          diameter: "6",
+          length: "190",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP07-190",
+          diameter: "7",
+          length: "190",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP08-190",
+          diameter: "8",
+          length: "190",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP03-320",
+          diameter: "3",
+          length: "320",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP04-320",
+          diameter: "4",
+          length: "320",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP05-320",
+          diameter: "5",
+          length: "320",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP06-320",
+          diameter: "6",
+          length: "320",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP07-320",
+          diameter: "7",
+          length: "320",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+        {
+          catalogNo: "TJEP08-320",
+          diameter: "8",
+          length: "320",
+          compatibility: '0.014"',
+          sheath: "3.2F",
+          retrievalSheath: "4.2F",
+          guidingCatheter: '0.066"',
+        },
+      ],
+      features: [
+        {
+          title: "Soft Material and Safe Design",
+          description:
+            "Soft braided Nitinol filter provides great crossability in tortuous vessels.",
+        },
+        {
+          title: "Precise Positioning Markers",
+          description:
+            "Two radiopaque markers at proximal and distal ends ensure precise positioning.",
+        },
+        {
+          title: "Effective Filter Pore Design",
+          description:
+            "Gradient filter pore diameter (80μm-160μm) provides much lower endovascular pressure.",
+        },
+        {
+          title: "Convenient Guidewire Exchange",
+          description:
+            'Integrated sheath compatible with 0.014" guidewire for rapid exchange during procedure.',
+        },
+      ],
+    },
+    perrdenser: {
+      title: "Perdenser™",
+      subtitle: "Peripheral Drug-Eluting Balloon",
+      description:
+        "Innovative drug-coated balloon technology for the treatment of peripheral arterial diseases.",
+      image: perdenserImage,
+      specs: [
+        // Grup 1: 1.5mm - 3mm Loop Dia.
+        {
+          catalogNo: "TJCST1.502-2D",
+          catalogNo3D: "TJCST1.502-3D",
+          loopDia: "1.5",
+          length: "2",
+        },
+        {
+          catalogNo: "TJCST1.503-2D",
+          catalogNo3D: "TJCST1.503-3D",
+          loopDia: "1.5",
+          length: "3",
+        },
+        {
+          catalogNo: "TJCST1.504-2D",
+          catalogNo3D: "TJCST1.504-3D",
+          loopDia: "1.5",
+          length: "4",
+        },
+        {
+          catalogNo: "TJCST0201-2D",
+          catalogNo3D: "TJCST0201-3D",
+          loopDia: "2",
+          length: "1",
+        },
+        {
+          catalogNo: "TJCST0202-2D",
+          catalogNo3D: "TJCST0202-3D",
+          loopDia: "2",
+          length: "2",
+        },
+        {
+          catalogNo: "TJCST0203-2D",
+          catalogNo3D: "TJCST0203-3D",
+          loopDia: "2",
+          length: "3",
+        },
+        {
+          catalogNo: "TJCST0204-2D",
+          catalogNo3D: "TJCST0204-3D",
+          loopDia: "2",
+          length: "4",
+        },
+        {
+          catalogNo: "TJCST0206-2D",
+          catalogNo3D: "TJCST0206-3D",
+          loopDia: "2",
+          length: "6",
+        },
+        {
+          catalogNo: "TJCST0208-2D",
+          catalogNo3D: "TJCST0208-3D",
+          loopDia: "2",
+          length: "8",
+        },
+        {
+          catalogNo: "TJCST2.502-2D",
+          catalogNo3D: "TJCST2.502-3D",
+          loopDia: "2.5",
+          length: "2",
+        },
+        {
+          catalogNo: "TJCST2.504-2D",
+          catalogNo3D: "TJCST2.504-3D",
+          loopDia: "2.5",
+          length: "4",
+        },
+        {
+          catalogNo: "TJCST2.506-2D",
+          catalogNo3D: "TJCST2.506-3D",
+          loopDia: "2.5",
+          length: "6",
+        },
+        {
+          catalogNo: "TJCST2.508-2D",
+          catalogNo3D: "TJCST2.508-3D",
+          loopDia: "2.5",
+          length: "8",
+        },
+        {
+          catalogNo: "TJCST0304-2D",
+          catalogNo3D: "TJCST0304-3D",
+          loopDia: "3",
+          length: "4",
+        },
+        {
+          catalogNo: "TJCST0306-2D",
+          catalogNo3D: "TJCST0306-3D",
+          loopDia: "3",
+          length: "6",
+        },
+        {
+          catalogNo: "TJCST0308-2D",
+          catalogNo3D: "TJCST0308-3D",
+          loopDia: "3",
+          length: "8",
+        },
+        {
+          catalogNo: "TJCST0310-2D",
+          catalogNo3D: "TJCST0310-3D",
+          loopDia: "3",
+          length: "10",
+        },
+        {
+          catalogNo: "TJCST0312-2D",
+          catalogNo3D: "TJCST0312-3D",
+          loopDia: "3",
+          length: "12",
+        },
+        {
+          catalogNo: "TJCST3.506-2D",
+          catalogNo3D: "TJCST3.506-3D",
+          loopDia: "3.5",
+          length: "6",
+        },
+        {
+          catalogNo: "TJCST3.508-2D",
+          catalogNo3D: "TJCST3.508-3D",
+          loopDia: "3.5",
+          length: "8",
+        },
+        {
+          catalogNo: "TJCST3.510-2D",
+          catalogNo3D: "TJCST3.510-3D",
+          loopDia: "3.5",
+          length: "10",
+        },
+        {
+          catalogNo: "TJCST3.512-2D",
+          catalogNo3D: "TJCST3.512-3D",
+          loopDia: "3.5",
+          length: "12",
+        },
+        {
+          catalogNo: "TJCST0404-2D",
+          catalogNo3D: "TJCST0404-3D",
+          loopDia: "4",
+          length: "4",
+        },
+        {
+          catalogNo: "TJCST0406-2D",
+          catalogNo3D: "TJCST0406-3D",
+          loopDia: "4",
+          length: "6",
+        },
+        {
+          catalogNo: "TJCST0408-2D",
+          catalogNo3D: "TJCST0408-3D",
+          loopDia: "4",
+          length: "8",
+        },
+        {
+          catalogNo: "TJCST0410-2D",
+          catalogNo3D: "TJCST0410-3D",
+          loopDia: "4",
+          length: "10",
+        },
+      ],
+      specs2: [
+        // Grup 2: 4.5mm - 20mm Loop Dia.
+        {
+          catalogNo: "TJCST4.506-2D",
+          catalogNo3D: "TJCST4.506-3D",
+          loopDia: "4.5",
+          length: "6",
+        },
+        {
+          catalogNo: "TJCST4.508-2D",
+          catalogNo3D: "TJCST4.508-3D",
+          loopDia: "4.5",
+          length: "8",
+        },
+        {
+          catalogNo: "TJCST4.510-2D",
+          catalogNo3D: "TJCST4.510-3D",
+          loopDia: "4.5",
+          length: "10",
+        },
+        {
+          catalogNo: "TJCST4.512-2D",
+          catalogNo3D: "TJCST4.512-3D",
+          loopDia: "4.5",
+          length: "12",
+        },
+        {
+          catalogNo: "TJCST4.515-2D",
+          catalogNo3D: "TJCST4.515-3D",
+          loopDia: "4.5",
+          length: "15",
+        },
+        {
+          catalogNo: "TJCST0509-2D",
+          catalogNo3D: "TJCST0509-3D",
+          loopDia: "5",
+          length: "9",
+        },
+        {
+          catalogNo: "TJCST0510-2D",
+          catalogNo3D: "TJCST0510-3D",
+          loopDia: "5",
+          length: "10",
+        },
+        {
+          catalogNo: "TJCST0515-2D",
+          catalogNo3D: "TJCST0515-3D",
+          loopDia: "5",
+          length: "15",
+        },
+        {
+          catalogNo: "TJCST0520-2D",
+          catalogNo3D: "TJCST0520-3D",
+          loopDia: "5",
+          length: "20",
+        },
+        {
+          catalogNo: "TJCST0610-2D",
+          catalogNo3D: "TJCST0610-3D",
+          loopDia: "6",
+          length: "10",
+        },
+        {
+          catalogNo: "TJCST0611-2D",
+          catalogNo3D: "TJCST0611-3D",
+          loopDia: "6",
+          length: "11",
+        },
+        {
+          catalogNo: "TJCST0615-2D",
+          catalogNo3D: "TJCST0615-3D",
+          loopDia: "6",
+          length: "15",
+        },
+        {
+          catalogNo: "TJCST0620-2D",
+          catalogNo3D: "TJCST0620-3D",
+          loopDia: "6",
+          length: "20",
+        },
+        {
+          catalogNo: "TJCST0715-2D",
+          catalogNo3D: "TJCST0715-3D",
+          loopDia: "7",
+          length: "15",
+        },
+        {
+          catalogNo: "TJCST0720-2D",
+          catalogNo3D: "TJCST0720-3D",
+          loopDia: "7",
+          length: "20",
+        },
+        {
+          catalogNo: "TJCST0730-2D",
+          catalogNo3D: "TJCST0730-3D",
+          loopDia: "7",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST0815-2D",
+          catalogNo3D: "TJCST0815-3D",
+          loopDia: "8",
+          length: "15",
+        },
+        {
+          catalogNo: "TJCST0820-2D",
+          catalogNo3D: "TJCST0820-3D",
+          loopDia: "8",
+          length: "20",
+        },
+        {
+          catalogNo: "TJCST0830-2D",
+          catalogNo3D: "TJCST0830-3D",
+          loopDia: "8",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST0920-2D",
+          catalogNo3D: "TJCST0920-3D",
+          loopDia: "9",
+          length: "20",
+        },
+        {
+          catalogNo: "TJCST0930-2D",
+          catalogNo3D: "TJCST0930-3D",
+          loopDia: "9",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST1020-2D",
+          catalogNo3D: "TJCST1020-3D",
+          loopDia: "10",
+          length: "20",
+        },
+        {
+          catalogNo: "TJCST1030-2D",
+          catalogNo3D: "TJCST1030-3D",
+          loopDia: "10",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST1130-2D",
+          catalogNo3D: "TJCST1130-3D",
+          loopDia: "11",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST1230-2D",
+          catalogNo3D: "TJCST1230-3D",
+          loopDia: "12",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST1330-2D",
+          catalogNo3D: "TJCST1330-3D",
+          loopDia: "13",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST1430-2D",
+          catalogNo3D: "TJCST1430-3D",
+          loopDia: "14",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST1530-2D",
+          catalogNo3D: "TJCST1530-3D",
+          loopDia: "15",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST1630-2D",
+          catalogNo3D: "TJCST1630-3D",
+          loopDia: "16",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST1830-2D",
+          catalogNo3D: "TJCST1830-3D",
+          loopDia: "18",
+          length: "30",
+        },
+        {
+          catalogNo: "TJCST2030-2D",
+          catalogNo3D: "TJCST2030-3D",
+          loopDia: "20",
+          length: "30",
+        },
+      ],
+      features: [
+        {
+          title: "Homogeneous Drug Coating",
+          description:
+            "Special coating technology ensures uniform drug distribution.",
+        },
+        {
+          title: "Optimized Drug Dose",
+          description:
+            "3.0 μg/mm² Paclitaxel dose for optimal therapeutic efficacy.",
+        },
+        {
+          title: "Superior Crossing Profile",
+          description:
+            "Thin crossing profile enables successful navigation even in challenging lesions.",
+        },
+      ],
+    },
+    freepass: {
+      title: "Freepass®",
+      subtitle: "Self-Expanding Nitinol Stent",
+      description:
+        "Self-expanding stent system designed for peripheral vascular use with high flexibility.",
+      specs: [
+        {
+          catalogNo: "TJMC10",
+          effectiveLength: "150",
+          catheterProximalOD: "2.2F/0.73mm",
+          catheterDistalOD: "1.8F/0.60mm",
+          flexibleTipLength: "50",
+          catheterTipOD: "0.015",
+          tipShape: "Straight, Steam Shapeable",
+          markers: "2 markers, 3cm",
+        },
+        {
+          catalogNo: "TJMC14",
+          effectiveLength: "150",
+          catheterProximalOD: "2.3F/0.76mm",
+          catheterDistalOD: "1.9F/0.63mm",
+          flexibleTipLength: "50",
+          catheterTipOD: "0.0165",
+          tipShape: "Straight, Steam Shapeable",
+          markers: "2 markers, 3cm",
+        },
+        {
+          catalogNo: "TJMC16",
+          effectiveLength: "150",
+          catheterProximalOD: "2.8F/0.93mm",
+          catheterDistalOD: "2.3F/0.76mm",
+          flexibleTipLength: "50",
+          catheterTipOD: "0.021",
+          tipShape: "Straight, Steam Shapeable",
+          markers: "2 markers, 3cm",
+        },
+        {
+          catalogNo: "TJMC18",
+          effectiveLength: "140",
+          catheterProximalOD: "2.8F/0.93mm",
+          catheterDistalOD: "2.5F/0.83mm",
+          flexibleTipLength: "30",
+          catheterTipOD: "0.027",
+          tipShape: "Straight, Steam Shapeable",
+          markers: "1 marker",
+        },
+      ],
+      features: [
+        {
+          title: "Optimized Design",
+          description:
+            "Steam shapeable tip with straight configuration for optimal vessel access.",
+        },
+        {
+          title: "Precise Navigation",
+          description:
+            "Radiopaque markers for accurate positioning and navigation.",
+        },
+        {
+          title: "Flexible Construction",
+          description:
+            "Variable tip lengths and diameters for different vessel requirements.",
+        },
+      ],
+    },
+  };
+
+  const handleDownload = () => {
+    if (selectedProduct === "perrdenser") {
+      // Perdenser için tablo verilerini hazırlıyoruz
+      const tableData1 = [
+        // Grup 1 başlık satırı
+        [
+          "Catalogue No. Helical (2D)",
+          "Catalogue No. Complex (3D)",
+          "Loop Dia. (mm)",
+          "Length (cm)",
+        ],
+        // Grup 1 verileri
+        ...products[selectedProduct].specs.map((spec) => [
+          spec.catalogNo,
+          spec.catalogNo3D,
+          spec.loopDia,
+          spec.length,
+        ]),
+      ];
+
+      const tableData2 = [
+        // Grup 2 başlık satırı
+        [
+          "Catalogue No. Helical (2D)",
+          "Catalogue No. Complex (3D)",
+          "Loop Dia. (mm)",
+          "Length (cm)",
+        ],
+        // Grup 2 verileri
+        ...products[selectedProduct].specs2.map((spec) => [
+          spec.catalogNo,
+          spec.catalogNo3D,
+          spec.loopDia,
+          spec.length,
+        ]),
+      ];
+
+      // Excel dosyası oluşturuyoruz
+      const wb = XLSX.utils.book_new();
+
+      // Her grup için ayrı sayfa oluşturuyoruz
+      const ws1 = XLSX.utils.aoa_to_sheet(tableData1);
+      const ws2 = XLSX.utils.aoa_to_sheet(tableData2);
+
+      // Sayfaları Excel dosyasına ekliyoruz
+      XLSX.utils.book_append_sheet(wb, ws1, "Group 1 (1.5-4mm)");
+      XLSX.utils.book_append_sheet(wb, ws2, "Group 2 (4.5-20mm)");
+
+      // Excel dosyasını indiriyoruz
+      const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+      const data = new Blob([excelBuffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+      saveAs(data, `${products[selectedProduct].title}_Specifications.xlsx`);
+    } else if (selectedProduct === "freepass") {
+      // Freepass için tablo verilerini hazırlıyoruz
+      const tableData = [
+        // Başlık satırı
+        [
+          "Catalogue No.",
+          "Effective Length (cm)",
+          "Catheter Proximal O.D.",
+          "Catheter Distal O.D.",
+          "Flexible Tip Length (cm)",
+          "Catheter Tip O.D.",
+          "Tip Shape",
+          "Markers",
+        ],
+        // Ürün verileri
+        ...products[selectedProduct].specs.map((spec) => [
+          spec.catalogNo,
+          spec.effectiveLength,
+          spec.catheterProximalOD,
+          spec.catheterDistalOD,
+          spec.flexibleTipLength,
+          spec.catheterTipOD,
+          spec.tipShape,
+          spec.markers,
+        ]),
+      ];
+
+      // Excel dosyası oluşturuyoruz
+      const ws = XLSX.utils.aoa_to_sheet(tableData);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Specifications");
+
+      // Excel dosyasını indiriyoruz
+      const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+      const data = new Blob([excelBuffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+      saveAs(data, `${products[selectedProduct].title}_Specifications.xlsx`);
+    } else {
+      // Proender için mevcut indirme fonksiyonu
+      const tableData = [
+        // Başlık satırı
+        [
+          "Catalogue No.",
+          "Filter Diameter (mm)",
+          "Guidewire Length (cm)",
+          "Guidewire Compatibility",
+          "Delivery Sheath O.D.",
+          "Retrieval Sheath O.D.",
+          "Guiding Catheter Compatibility (min.)",
+        ],
+        // Ürün verileri
+        ...products[selectedProduct].specs.map((spec, index) => (
+          <motion.tr
+            key={spec.catalogNo}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
+            <td>{spec.catalogNo}</td>
+            <td>{spec.diameter}</td>
+            <td>{spec.length}</td>
+            <td>{spec.compatibility}</td>
+            <td>{spec.sheath}</td>
+            <td>{spec.retrievalSheath}</td>
+            <td>{spec.guidingCatheter}</td>
+          </motion.tr>
+        )),
+      ];
+
+      // Excel dosyası oluşturuyoruz
+      const ws = XLSX.utils.aoa_to_sheet(tableData);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Specifications");
+
+      // Excel dosyasını indiriyoruz
+      const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+      const data = new Blob([excelBuffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+      saveAs(data, `${products[selectedProduct].title}_Specifications.xlsx`);
+    }
+  };
+
+  const handleDownloadPDF = () => {
+    let pdfUrl;
+    switch (selectedProduct) {
+      case "proender":
+        pdfUrl = proenderPDF;
+        break;
+      case "perrdenser":
+        pdfUrl = perdenserPDF;
+        break;
+      case "freepass":
+        pdfUrl = freepassPDF;
+        break;
+      default:
+        return;
+    }
+
+    // PDF'yi indir
+    fetch(pdfUrl)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${products[selectedProduct].title}_Product_Information.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      });
+  };
+
+  return (
+    <div className="page-container">
+      <div className="products-nav">
+        {Object.keys(products).map((productKey) => (
+          <button
+            key={productKey}
+            className={`product-nav-button ${
+              selectedProduct === productKey ? "active" : ""
+            }`}
+            onClick={() => setSelectedProduct(productKey)}
+          >
+            {products[productKey].title}
+          </button>
+        ))}
+      </div>
+
+      <div
+        className="product-hero"
+        style={{
+          background:
+            selectedProduct === "perrdenser"
+              ? `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${products[selectedProduct].image})`
+              : undefined,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <motion.h1
+          key={selectedProduct + "-title"}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {products[selectedProduct].title}
+        </motion.h1>
+        <motion.p
+          key={selectedProduct + "-subtitle"}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="product-subtitle"
+        >
+          {products[selectedProduct].subtitle}
+        </motion.p>
+      </div>
+
+      <div className="product-content">
+        <div className="product-description">
+          <p>{products[selectedProduct].description}</p>
+        </div>
+
+        <div className="product-tabs">
+          <button
+            className={`tab-button ${
+              activeTab === "specifications" ? "active" : ""
+            }`}
+            onClick={() => setActiveTab("specifications")}
+          >
+            Product Specifications
+          </button>
+          <button
+            className={`tab-button ${activeTab === "features" ? "active" : ""}`}
+            onClick={() => setActiveTab("features")}
+          >
+            Features
+          </button>
+        </div>
+
+        <div className="tab-content">
+          {activeTab === "specifications" && (
+            <motion.div
+              key={selectedProduct + "-specs"}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="specifications-table"
+            >
+              <div className="table-header">
+                <motion.button
+                  className="download-button"
+                  onClick={handleDownloadPDF}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Download PDF
+                </motion.button>
+              </div>
+              {selectedProduct === "perrdenser" ? (
+                <>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Catalogue No. Helical (2D)</th>
+                        <th>Catalogue No. Complex (3D)</th>
+                        <th>Loop Dia. (mm)</th>
+                        <th>Length (cm)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {getCurrentItems([
+                        ...products[selectedProduct].specs,
+                        ...products[selectedProduct].specs2,
+                      ]).map((spec, index) => (
+                        <motion.tr
+                          key={spec.catalogNo}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                        >
+                          <td>{spec.catalogNo}</td>
+                          <td>{spec.catalogNo3D}</td>
+                          <td>{spec.loopDia}</td>
+                          <td>{spec.length}</td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+
+                  {/* Sayfalama kontrolleri */}
+                  <div className="pagination-controls">
+                    <button
+                      onClick={() =>
+                        setCurrentPage((prev) => Math.max(prev - 1, 1))
+                      }
+                      disabled={currentPage === 1}
+                      className="pagination-button"
+                    >
+                      Önceki
+                    </button>
+                    <span className="page-info">
+                      Sayfa {currentPage} /{" "}
+                      {totalPages([
+                        ...products[selectedProduct].specs,
+                        ...products[selectedProduct].specs2,
+                      ])}
+                    </span>
+                    <button
+                      onClick={() =>
+                        setCurrentPage((prev) =>
+                          Math.min(
+                            prev + 1,
+                            totalPages([
+                              ...products[selectedProduct].specs,
+                              ...products[selectedProduct].specs2,
+                            ])
+                          )
+                        )
+                      }
+                      disabled={
+                        currentPage ===
+                        totalPages([
+                          ...products[selectedProduct].specs,
+                          ...products[selectedProduct].specs2,
+                        ])
+                      }
+                      className="pagination-button"
+                    >
+                      Sonraki
+                    </button>
+                  </div>
+
+                  <p
+                    style={{
+                      marginTop: "1rem",
+                      fontSize: "0.9rem",
+                      color: "#666",
+                    }}
+                  >
+                    * Minimal microcatheter inner diameter compatibility:
+                    0.0165"
+                  </p>
+                </>
+              ) : selectedProduct === "proender" ? (
+                <>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Catalogue No.</th>
+                        <th>Filter Diameter (mm)</th>
+                        <th>Guidewire Length (cm)</th>
+                        <th>Guidewire Compatibility</th>
+                        <th>Delivery Sheath O.D.</th>
+                        <th>Retrieval Sheath O.D.</th>
+                        <th>Guiding Catheter Compatibility (min.)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {products[selectedProduct].specs.map((spec, index) => (
+                        <motion.tr
+                          key={spec.catalogNo}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                        >
+                          <td>{spec.catalogNo}</td>
+                          <td>{spec.diameter}</td>
+                          <td>{spec.length}</td>
+                          <td>{spec.compatibility}</td>
+                          <td>{spec.sheath}</td>
+                          <td>{spec.retrievalSheath}</td>
+                          <td>{spec.guidingCatheter}</td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              ) : (
+                // Freepass için mevcut tablo yapısı
+                <>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Catalogue No.</th>
+                        <th>Effective Length (cm)</th>
+                        <th>Catheter Proximal O.D.</th>
+                        <th>Catheter Distal O.D.</th>
+                        <th>Flexible Tip Length (cm)</th>
+                        <th>Catheter Tip O.D.</th>
+                        <th>Tip Shape</th>
+                        <th>Markers</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {products[selectedProduct].specs.map((spec, index) => (
+                        <motion.tr
+                          key={spec.catalogNo}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                        >
+                          <td>{spec.catalogNo}</td>
+                          <td>{spec.effectiveLength}</td>
+                          <td>{spec.catheterProximalOD}</td>
+                          <td>{spec.catheterDistalOD}</td>
+                          <td>{spec.flexibleTipLength}</td>
+                          <td>{spec.catheterTipOD}</td>
+                          <td>{spec.tipShape}</td>
+                          <td>{spec.markers}</td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              )}
+            </motion.div>
+          )}
+
+          {activeTab === "features" && (
+            <motion.div
+              key={selectedProduct + "-features"}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="features-grid"
+            >
+              {products[selectedProduct].features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  className="feature-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Products;
