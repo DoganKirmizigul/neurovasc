@@ -43,9 +43,9 @@ function Footer() {
 
         <div className="footer-section">
           <h3>Contact</h3>
-          <p>Email: info@neurovasc.com</p>
-          <p>Phone: +1 234 567 8900</p>
-          <p>Address: Germany</p>
+          <p>Email: info@neurovasc.co.uk</p>
+          <p>Phone: 07976 888630</p>
+          <p>Address: RH12 3XX Horsham, West Sussex, England</p>
         </div>
       </div>
 
