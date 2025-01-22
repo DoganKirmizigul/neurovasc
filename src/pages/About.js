@@ -1,67 +1,112 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import aboutHeroImage from "../assets/images/about-hero.jpg";
+import { motion } from "framer-motion";
 
 function About() {
-  const aboutHeroStyle = {
-    background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${aboutHeroImage})`,
+  const heroBackgroundStyle = {
+    background: `linear-gradient(rgba(26, 54, 93, 0.9), rgba(43, 76, 126, 0.9)), url("https://images.unsplash.com/photo-1631549916768-4119b2e5f926?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80")`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   };
 
   return (
     <div className="page-container">
-      <div className="about-hero" style={aboutHeroStyle}>
-        <h1>ABOUT US</h1>
-      </div>
-
-      <div className="about-content">
-        <div className="about-text">
-          <h2>Who We Are</h2>
-          <p>
-            Based in England, we specialize in developing innovative solutions
-            for peripheral vascular treatments. Our goal is to leverage the
-            latest technologies in endovascular therapies to enhance patients'
-            quality of life and provide cutting-edge products to the healthcare
-            sector.
-          </p>
+      <motion.section
+        className="about-hero-section"
+        style={heroBackgroundStyle}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="about-hero-content">
+          <motion.h1
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            We are Neurovasc.
+          </motion.h1>
+          <motion.h2
+            initial={{ y: -30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            Leading provider of endovascular treatment solutions in the UK.
+          </motion.h2>
+          <motion.p
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="about-hero-description"
+          >
+            We are dedicated to advancing the health and wellbeing of the UK
+            population by providing a network of high-quality and cost-effective
+            healthcare services.
+          </motion.p>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          >
+            <Link to="/contact" className="about-cta-button">
+              Contact Us
+            </Link>
+          </motion.div>
         </div>
+      </motion.section>
 
-        <div className="about-text">
-          <h2>Our Expertise</h2>
-          <p>
-            Our expert team is committed to creating effective and safe
-            treatment options, such as the{" "}
-            <span className="highlight-text">
-              Drug Transfer Balloon Catheter System (DTB)
-            </span>
-            . Through our R&D efforts, we not only develop products but also
-            contribute to the advancement of patient-centered treatment methods.
-          </p>
-        </div>
+      <section className="about-content-section">
+        <div className="about-grid">
+          <motion.div
+            className="about-card"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3>Who We Are</h3>
+            <p>
+              Based in the UK, we are dedicated to advancing the health and
+              wellbeing of the UK population. We provide a network of
+              high-quality and cost-effective healthcare services, education,
+              and training for the prevention, diagnosis, and treatment of
+              diseases in accordance with current medical standards.
+            </p>
+          </motion.div>
 
-        <div className="about-text">
-          <h2>Our Mission</h2>
-          <p>
-            Our mission is to develop reliable and effective technologies in
-            vascular treatments, offering healthcare professionals improved
-            therapeutic options. By combining advanced technology with a
-            patient-centric approach, we strive to meet the evolving needs of
-            the healthcare sector.
-          </p>
-        </div>
+          <motion.div
+            className="about-card"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h3>Our Expertise</h3>
+            <p>
+              Our expert team is dedicated to supporting every endovascular
+              specialist. After 15 years of service across the EU and EMEA, we
+              now offer our service in the UK. Case observation, procedure
+              participation and assistance, providing and presenting the right
+              tools for each patient are our team's main objectives.
+            </p>
+          </motion.div>
 
-        <div className="about-text">
-          <h2>Our Vision</h2>
-          <p>
-            We are pioneering a new era in vascular treatments with our
-            innovative solutions. With continuously evolving technology and
-            patient needs, we aim to maintain our leading position in the
-            industry and become a trusted brand on a global scale.
-          </p>
-          <Link to="/contact" className="contact-button">
-            Get in Touch
-          </Link>
+          <motion.div
+            className="about-card"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <h3>Our Mission</h3>
+            <p>
+              Our mission is to provide healthcare professionals with advanced
+              and cost-effective treatment options by bringing reliable and
+              effective technologies in endovascular treatments.
+            </p>
+          </motion.div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

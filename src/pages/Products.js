@@ -6,6 +6,7 @@ import { saveAs } from "file-saver";
 import proenderPDF from "../assets/pdfs/proender.pdf";
 import perdenserPDF from "../assets/pdfs/perdenser.pdf";
 import freepassPDF from "../assets/pdfs/freepass.pdf";
+import { Link } from "react-router-dom";
 
 function Products() {
   const [selectedProduct, setSelectedProduct] = useState("proender");
@@ -13,7 +14,7 @@ function Products() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
-  // Sayfalama için yardımcı fonksiyonlar
+  // Helper functions for pagination
   const getCurrentItems = (items) => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -168,7 +169,7 @@ function Products() {
         "Innovative drug-coated balloon technology for the treatment of peripheral arterial diseases.",
       image: perdenserImage,
       specs: [
-        // Grup 1: 1.5mm - 3mm Loop Dia.
+        // Group 1: 1.5mm - 3mm Loop Dia.
         {
           catalogNo: "TJCST1.502-2D",
           catalogNo3D: "TJCST1.502-3D",
@@ -327,7 +328,7 @@ function Products() {
         },
       ],
       specs2: [
-        // Grup 2: 4.5mm - 20mm Loop Dia.
+        // Group 2: 4.5mm - 20mm Loop Dia.
         {
           catalogNo: "TJCST4.506-2D",
           catalogNo3D: "TJCST4.506-3D",
@@ -602,16 +603,16 @@ function Products() {
 
   const handleDownload = () => {
     if (selectedProduct === "perrdenser") {
-      // Perdenser için tablo verilerini hazırlıyoruz
+      // Prepare table data for Perdenser
       const tableData1 = [
-        // Grup 1 başlık satırı
+        // Group 1 header row
         [
           "Catalogue No. Helical (2D)",
           "Catalogue No. Complex (3D)",
           "Loop Dia. (mm)",
           "Length (cm)",
         ],
-        // Grup 1 verileri
+        // Group 1 data
         ...products[selectedProduct].specs.map((spec) => [
           spec.catalogNo,
           spec.catalogNo3D,
@@ -621,14 +622,14 @@ function Products() {
       ];
 
       const tableData2 = [
-        // Grup 2 başlık satırı
+        // Group 2 header row
         [
           "Catalogue No. Helical (2D)",
           "Catalogue No. Complex (3D)",
           "Loop Dia. (mm)",
           "Length (cm)",
         ],
-        // Grup 2 verileri
+        // Group 2 data
         ...products[selectedProduct].specs2.map((spec) => [
           spec.catalogNo,
           spec.catalogNo3D,
@@ -637,27 +638,27 @@ function Products() {
         ]),
       ];
 
-      // Excel dosyası oluşturuyoruz
+      // Create Excel workbook
       const wb = XLSX.utils.book_new();
 
-      // Her grup için ayrı sayfa oluşturuyoruz
+      // Create separate sheets for each group
       const ws1 = XLSX.utils.aoa_to_sheet(tableData1);
       const ws2 = XLSX.utils.aoa_to_sheet(tableData2);
 
-      // Sayfaları Excel dosyasına ekliyoruz
+      // Add sheets to workbook
       XLSX.utils.book_append_sheet(wb, ws1, "Group 1 (1.5-4mm)");
       XLSX.utils.book_append_sheet(wb, ws2, "Group 2 (4.5-20mm)");
 
-      // Excel dosyasını indiriyoruz
+      // Download Excel file
       const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
       const data = new Blob([excelBuffer], {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       });
       saveAs(data, `${products[selectedProduct].title}_Specifications.xlsx`);
     } else if (selectedProduct === "freepass") {
-      // Freepass için tablo verilerini hazırlıyoruz
+      // Prepare table data for Freepass
       const tableData = [
-        // Başlık satırı
+        // Header row
         [
           "Catalogue No.",
           "Effective Length (cm)",
@@ -668,7 +669,7 @@ function Products() {
           "Tip Shape",
           "Markers",
         ],
-        // Ürün verileri
+        // Product data
         ...products[selectedProduct].specs.map((spec) => [
           spec.catalogNo,
           spec.effectiveLength,
@@ -681,21 +682,21 @@ function Products() {
         ]),
       ];
 
-      // Excel dosyası oluşturuyoruz
+      // Create Excel workbook
       const ws = XLSX.utils.aoa_to_sheet(tableData);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Specifications");
 
-      // Excel dosyasını indiriyoruz
+      // Download Excel file
       const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
       const data = new Blob([excelBuffer], {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       });
       saveAs(data, `${products[selectedProduct].title}_Specifications.xlsx`);
     } else {
-      // Proender için mevcut indirme fonksiyonu
+      // Existing download function for Proender
       const tableData = [
-        // Başlık satırı
+        // Header row
         [
           "Catalogue No.",
           "Filter Diameter (mm)",
@@ -705,7 +706,7 @@ function Products() {
           "Retrieval Sheath O.D.",
           "Guiding Catheter Compatibility (min.)",
         ],
-        // Ürün verileri
+        // Product data
         ...products[selectedProduct].specs.map((spec, index) => (
           <motion.tr
             key={spec.catalogNo}
@@ -724,12 +725,12 @@ function Products() {
         )),
       ];
 
-      // Excel dosyası oluşturuyoruz
+      // Create Excel workbook
       const ws = XLSX.utils.aoa_to_sheet(tableData);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Specifications");
 
-      // Excel dosyasını indiriyoruz
+      // Download Excel file
       const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
       const data = new Blob([excelBuffer], {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -754,7 +755,7 @@ function Products() {
         return;
     }
 
-    // PDF'yi indir
+    // Download PDF
     fetch(pdfUrl)
       .then((response) => response.blob())
       .then((blob) => {
@@ -771,52 +772,44 @@ function Products() {
 
   return (
     <div className="page-container">
-      <div className="products-nav">
-        {Object.keys(products).map((productKey) => (
-          <button
-            key={productKey}
-            className={`product-nav-button ${
-              selectedProduct === productKey ? "active" : ""
-            }`}
-            onClick={() => setSelectedProduct(productKey)}
-          >
-            {products[productKey].title}
-          </button>
-        ))}
-      </div>
-
-      <div
+      <motion.section
         className="product-hero"
-        style={{
-          background:
-            selectedProduct === "perrdenser"
-              ? `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${products[selectedProduct].image})`
-              : undefined,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
       >
         <motion.h1
-          key={selectedProduct + "-title"}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
         >
-          {products[selectedProduct].title}
+          Our Products
         </motion.h1>
         <motion.p
-          key={selectedProduct + "-subtitle"}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
           className="product-subtitle"
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
         >
-          {products[selectedProduct].subtitle}
+          Innovative Endovascular Treatment Solutions
         </motion.p>
-      </div>
+      </motion.section>
 
-      <div className="product-content">
+      <section className="product-content">
+        <div className="products-nav">
+          {Object.keys(products).map((productKey) => (
+            <button
+              key={productKey}
+              className={`product-nav-button ${
+                selectedProduct === productKey ? "active" : ""
+              }`}
+              onClick={() => setSelectedProduct(productKey)}
+            >
+              {products[productKey].title}
+            </button>
+          ))}
+        </div>
+
         <div className="product-description">
           <p>{products[selectedProduct].description}</p>
         </div>
@@ -1040,7 +1033,26 @@ function Products() {
             </motion.div>
           )}
         </div>
-      </div>
+
+        <motion.div
+          className="cta-section"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="cta-content">
+            <h2>For More Information</h2>
+            <p>
+              Please contact us for detailed information about our products and
+              technical documents.
+            </p>
+            <Link to="/contact" className="cta-button">
+              Contact Us
+            </Link>
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 }
