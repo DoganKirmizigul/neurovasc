@@ -158,9 +158,7 @@ function Home() {
               className="product-image"
             />
             <h3>Proender®</h3>
-            <p className="product-subtitle">
-              Disposable Embolic Protection Device
-            </p>
+            <p className="product-subtitle">Embolic Protection Device</p>
             <p>
               Advanced protection device for carotid artery intervention,
               providing reliable protection against distal embolization with its
@@ -182,11 +180,11 @@ function Home() {
               className="product-image"
             />
             <h3>Perdenser™</h3>
-            <p className="product-subtitle">Peripheral Drug-Eluting Balloon</p>
+            <p className="product-subtitle">3D Perdenser Detachable Coil</p>
             <p>
-              State-of-the-art drug-coated balloon technology designed for
-              effective treatment of peripheral arterial diseases with optimal
-              drug delivery.
+              Offer excellent versatility, featuring a broad selection of sizes
+              and varying degrees of softness to accommodate a wide range of
+              clinical cases.
             </p>
             <Link to="/products" className="learn-more-btn">
               Learn More
@@ -204,7 +202,7 @@ function Home() {
               className="product-image"
             />
             <h3>Freepass®</h3>
-            <p className="product-subtitle">Self-Expanding Nitinol Stent</p>
+            <p className="product-subtitle">Microcatheter</p>
             <p>
               High-flexibility self-expanding stent system specifically
               engineered for peripheral vascular applications with superior

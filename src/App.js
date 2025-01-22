@@ -13,7 +13,6 @@ import { FaBars, FaTimes } from "react-icons/fa";
 // Sayfaları import edelim
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Technology from "./pages/Technology";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 
@@ -54,13 +53,6 @@ function App() {
               ABOUT
             </NavLink>
             <NavLink
-              to="/technology"
-              onClick={() => setIsMenuOpen(false)}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              TECHNOLOGY
-            </NavLink>
-            <NavLink
               to="/products"
               onClick={() => setIsMenuOpen(false)}
               className={({ isActive }) => (isActive ? "active" : "")}
@@ -81,7 +73,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/technology" element={<Technology />} />
             <Route path="/products" element={<Products />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

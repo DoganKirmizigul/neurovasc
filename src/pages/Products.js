@@ -27,8 +27,7 @@ function Products() {
     proender: {
       title: "Proender®",
       subtitle: "Disposable Embolic Protection Device",
-      description:
-        "This product is applied for carotid artery intervention and provides protection for patients with distal embolization of blood vessels.",
+      description: "Embolic Protection Device",
       specs: [
         {
           catalogNo: "TJEP03-190",
@@ -165,8 +164,7 @@ function Products() {
     perrdenser: {
       title: "Perdenser™",
       subtitle: "Peripheral Drug-Eluting Balloon",
-      description:
-        "Innovative drug-coated balloon technology for the treatment of peripheral arterial diseases.",
+      description: "3D Perdenser Detachable Coil",
       image: perdenserImage,
       specs: [
         // Group 1: 1.5mm - 3mm Loop Dia.
@@ -537,8 +535,7 @@ function Products() {
     freepass: {
       title: "Freepass®",
       subtitle: "Self-Expanding Nitinol Stent",
-      description:
-        "Self-expanding stent system designed for peripheral vascular use with high flexibility.",
+      description: "Microcatheter",
       specs: [
         {
           catalogNo: "TJMC10",
