@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 5%;
+  padding: 0rem 5%;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
@@ -1486,23 +1486,6 @@ body {
   }
 }
 
-/* Navbar stilleri güncelleme */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 5%;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  box-sizing: border-box;
-}
-
 .menu-button {
   display: none;
   background: none;
@@ -1514,7 +1497,7 @@ body {
 }
 
 .menu-button:hover {
-  color: #e63946;
+  color: #ff0015;
 }
 
 @media (max-width: 768px) {
