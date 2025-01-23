@@ -36,7 +36,7 @@ function Footer() {
           <h3>Products</h3>
           <ul>
             <li>Proender®</li>
-            <li>Perrdenser™</li>
+            <li>Perdenser™</li>
             <li>Freepass®</li>
           </ul>
         </div>

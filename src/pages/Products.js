@@ -21,6 +21,9 @@ import { saveAs } from "file-saver";
 import proenderPDF from "../assets/pdfs/proender.pdf";
 import perdenserPDF from "../assets/pdfs/perdenser.pdf";
 import freepassPDF from "../assets/pdfs/freepass.pdf";
+import proenderIFUPDF from "../assets/pdfs/proender_ifu.pdf";
+import perdenserIFUPDF from "../assets/pdfs/perdenser_ifu.pdf";
+import freepassIFUPDF from "../assets/pdfs/freepass_ifu.pdf";
 import { Link, useLocation } from "react-router-dom";
 
 function Products() {
@@ -776,17 +779,17 @@ function Products() {
     }
   };
 
-  const handleDownloadPDF = () => {
+  const handleDownloadPDF = (type) => {
     let pdfUrl;
     switch (selectedProduct) {
       case "proender":
-        pdfUrl = proenderPDF;
+        pdfUrl = type === "brochure" ? proenderPDF : proenderIFUPDF;
         break;
       case "perrdenser":
-        pdfUrl = perdenserPDF;
+        pdfUrl = type === "brochure" ? perdenserPDF : perdenserIFUPDF;
         break;
       case "freepass":
-        pdfUrl = freepassPDF;
+        pdfUrl = type === "brochure" ? freepassPDF : freepassIFUPDF;
         break;
       default:
         return;
@@ -799,7 +802,9 @@ function Products() {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = `${products[selectedProduct].title}_Product_Information.pdf`;
+        a.download = `${products[selectedProduct].title}_${
+          type === "brochure" ? "Product_Information" : "IFU"
+        }.pdf`;
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
@@ -880,11 +885,19 @@ function Products() {
               <div className="table-header">
                 <motion.button
                   className="download-button"
-                  onClick={handleDownloadPDF}
+                  onClick={() => handleDownloadPDF("brochure")}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Download PDF
+                  Download Brochure
+                </motion.button>
+                <motion.button
+                  className="download-button"
+                  onClick={() => handleDownloadPDF("ifu")}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Download IFU
                 </motion.button>
               </div>
               {selectedProduct === "perrdenser" ? (
@@ -927,10 +940,10 @@ function Products() {
                       disabled={currentPage === 1}
                       className="pagination-button"
                     >
-                      Önceki
+                      Previous
                     </button>
                     <span className="page-info">
-                      Sayfa {currentPage} /{" "}
+                      Page {currentPage} /{" "}
                       {totalPages([
                         ...products[selectedProduct].specs,
                         ...products[selectedProduct].specs2,
@@ -957,7 +970,7 @@ function Products() {
                       }
                       className="pagination-button"
                     >
-                      Sonraki
+                      Next
                     </button>
                   </div>
 
