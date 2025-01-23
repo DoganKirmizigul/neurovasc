@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import perdenserImage from "../assets/images/perdenser.jpg";
 import perdenser1 from "../assets/images/perdenser/perdenser1.jpg";
@@ -21,13 +21,23 @@ import { saveAs } from "file-saver";
 import proenderPDF from "../assets/pdfs/proender.pdf";
 import perdenserPDF from "../assets/pdfs/perdenser.pdf";
 import freepassPDF from "../assets/pdfs/freepass.pdf";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Products() {
+  const location = useLocation();
   const [selectedProduct, setSelectedProduct] = useState("proender");
   const [activeTab, setActiveTab] = useState("specifications");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const productParam = params.get("product");
+    if (productParam && products[productParam]) {
+      setSelectedProduct(productParam);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [location]);
 
   // Helper functions for pagination
   const getCurrentItems = (items) => {

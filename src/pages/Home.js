@@ -164,7 +164,7 @@ function Home() {
               providing reliable protection against distal embolization with its
               innovative filter design.
             </p>
-            <Link to="/products" className="learn-more-btn">
+            <Link to="/products?product=proender" className="learn-more-btn">
               Learn More
             </Link>
           </motion.div>
@@ -186,7 +186,7 @@ function Home() {
               and varying degrees of softness to accommodate a wide range of
               clinical cases.
             </p>
-            <Link to="/products" className="learn-more-btn">
+            <Link to="/products?product=perrdenser" className="learn-more-btn">
               Learn More
             </Link>
           </motion.div>
@@ -208,7 +208,7 @@ function Home() {
               engineered for peripheral vascular applications with superior
               navigability.
             </p>
-            <Link to="/products" className="learn-more-btn">
+            <Link to="/products?product=freepass" className="learn-more-btn">
               Learn More
             </Link>
           </motion.div>
