@@ -119,16 +119,63 @@
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
+.feature-image {
+  width: 100%;
+  height: 200px;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.feature-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-image img {
+  transform: scale(1.05);
+}
+
+.feature-icon {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  background: #2b4c7e;
+}
+
+.feature-card:hover .feature-icon svg {
+  color: white !important;
 }
 
 .feature-card h3 {
-  color: #e63946;
+  color: #2b4c7e;
   margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.feature-card p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .contact-section {
@@ -705,45 +752,35 @@
   background: #f1f1f1;
 }
 
+.features-section {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.features-cover {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.features-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   padding: 2rem 0;
 }
 
-.feature-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-}
-
-.feature-card h3 {
-  color: #2b4c7e;
-  margin-bottom: 1rem;
-}
-
 @media (max-width: 768px) {
-  .product-hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .product-tabs {
-    flex-direction: column;
-  }
-
-  .tab-button {
-    width: 100%;
-  }
-
-  .specifications-table {
-    font-size: 0.9rem;
+  .features-cover {
+    height: 200px;
   }
 }
 
@@ -865,10 +902,10 @@
 /* Contact page styles */
 .contact-hero {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3");
+    url("../src/assets/images/customer-service.jpg");
   background-size: cover;
-  background-position: center;
-  height: 40vh;
+  background-position: top center;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -876,6 +913,13 @@
   color: white;
   text-align: center;
   margin-bottom: 3rem;
+  position: relative;
+}
+
+.contact-hero h1,
+.contact-subtitle {
+  position: relative;
+  z-index: 2;
 }
 
 .contact-hero h1 {
@@ -1152,13 +1196,6 @@
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Animasyonlu gradient arka plan */
-.contact-hero {
-  background: linear-gradient(-45deg, #1a365d, #2b4c7e, #e63946, #1a365d);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {

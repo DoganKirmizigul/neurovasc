@@ -1,6 +1,21 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import perdenserImage from "../assets/images/perdenser.jpg";
+import perdenser1 from "../assets/images/perdenser/perdenser1.jpg";
+import perdenser2 from "../assets/images/perdenser/perdenser2.jpg";
+import perdenser3 from "../assets/images/perdenser/perdenser3.jpg";
+import perdenser4 from "../assets/images/perdenser/perdenser4.jpg";
+import perdenser5 from "../assets/images/perdenser/perdenser5.jpg";
+import perdenser6 from "../assets/images/perdenser/perdenser6.jpg";
+import perdenser7 from "../assets/images/perdenser/perdenser7.jpg";
+import proender5 from "../assets/images/proender/proender5.jpg";
+import proender1 from "../assets/images/proender/proender1.jpg";
+import proender2 from "../assets/images/proender/proender2.jpg";
+import proender3 from "../assets/images/proender/proender3.jpg";
+import freepass4 from "../assets/images/freepass/freepass4.jpg";
+import freepass1 from "../assets/images/freepass/freepass1.jpg";
+import freepass2 from "../assets/images/freepass/freepass2.jpg";
+import freepass3 from "../assets/images/freepass/freepass3.jpg";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import proenderPDF from "../assets/pdfs/proender.pdf";
@@ -140,24 +155,22 @@ function Products() {
       ],
       features: [
         {
-          title: "Soft Material and Safe Design",
+          title: "Effective Mesh Design",
           description:
-            "Soft braided Nitinol filter provides great crossability in tortuous vessels.",
+            "The gradual filter mesh hole (effectively catching thrombus 80-240um) ensures the good debris capturing performance as well as continuous blood flow. While effectively capturing the emboli, it reduces the barrier to the blood flow, so that the blood flow can be continuously perfused.",
+          image: proender1,
         },
         {
-          title: "Precise Positioning Markers",
+          title: "Soft and safe structure",
           description:
-            "Two radiopaque markers at proximal and distal ends ensure precise positioning.",
+            "The unique seam-locking structure makes the opening shape full and can naturally fit with the blood vessel wall. The soft guide wire tip and round ball cap protect the distal blood vessels from damage to the utmost extent.",
+          image: proender2,
         },
         {
-          title: "Effective Filter Pore Design",
+          title: "Independently Moving Guide Wire Structure",
           description:
-            "Gradient filter pore diameter (80μm-160μm) provides much lower endovascular pressure.",
-        },
-        {
-          title: "Convenient Guidewire Exchange",
-          description:
-            'Integrated sheath compatible with 0.014" guidewire for rapid exchange during procedure.',
+            "The unique fixed sleeve design allows the guide wire to perform 360-degree rotation and a certain range of axial movement; at the same time, it prevents the position of the released filter from changing, avoiding damage to the inner wall of the blood vessel or inducing vasospasm.",
+          image: proender3,
         },
       ],
     },
@@ -516,19 +529,40 @@ function Products() {
       ],
       features: [
         {
-          title: "Homogeneous Drug Coating",
+          title: "Complete Models and Precise Positioning",
           description:
-            "Special coating technology ensures uniform drug distribution.",
+            'Spiral and complex spring coils, from basket formation, filling to finishing, all specifications and models are available. It can match all 0.0165"-0.021" inner diameter micro-catheters on the market. The dual-Marker design can accurately locate the delivery rod and the position of the release point.',
+          image: perdenser1,
         },
         {
-          title: "Optimized Drug Dose",
+          title: "Rigid and Flexible Conveying System",
           description:
-            "3.0 μg/mm² Paclitaxel dose for optimal therapeutic efficacy.",
+            "The delivery rod has a segmented design with different hardness, the proximal end is more rigid and the distal end is softer. The lengthened soft section design and shorter release point structure ensure the push rod to pass through tortuous blood vessels. The strengthened proximal push rod design provides nearly 100% push force, making the surgeon handy.",
+          image: perdenser2,
         },
         {
-          title: "Superior Crossing Profile",
+          title: "Tough Anti-Unspinning Power",
           description:
-            "Thin crossing profile enables successful navigation even in challenging lesions.",
+            "The polymer anti-untwisting system provides an anti-untwisting force of not less than 0.4N. It provides a strong guarantee for the secondary adjustment in the operation.",
+          image: perdenser3,
+        },
+        {
+          title: "Soft Lead-in Ring",
+          description:
+            "The implantation section is made of platinum-tungsten alloy, with a smooth polymer ball cap which is flexible.",
+          image: perdenser4,
+        },
+        {
+          title: "Uniform and Dense Filling",
+          description:
+            "The optimized O open loop design can fit an aneurysm of any shape at random turning points. The spring coils spread out evenly in 360 degrees to construct a stable basket frame. Fully capture the space for centripetal filling layer by layer and finally achieve the ideal dense embolism.",
+          image: perdenser5,
+        },
+        {
+          title: "Safe and Reliable Instant Release System",
+          description:
+            "The release point adopts advanced polymer wire instant fuse technology to achieve second release. The shape of the freed tail is smooth and soft, and there is no additional chemical residue. The operation process is simple, safe, stable, and controllable!",
+          image: perdenser6,
         },
       ],
     },
@@ -580,19 +614,22 @@ function Products() {
       ],
       features: [
         {
-          title: "Optimized Design",
+          title: "Good Head-End Shaping Ability",
           description:
-            "Steam shapeable tip with straight configuration for optimal vessel access.",
+            "The outer layer is covered with a reasonable thickness of thermoplastic resin which has good shape retention during the operation. The doctor can perform two or more times of shaping according to the actual situation.",
+          image: freepass1,
         },
         {
-          title: "Precise Navigation",
+          title: "Good and Reliable Support Effect",
           description:
-            "Radiopaque markers for accurate positioning and navigation.",
+            "The distal soft section is designed with a multi-level hardness gradient to provide the required supporting force at the neck of the aneurysm. It can stably maintain the shape of the tube and help overcome the kickback force during the release of the coil.",
+          image: freepass2,
         },
         {
-          title: "Flexible Construction",
+          title: "Flexible Three-Layer Composite Structure",
           description:
-            "Variable tip lengths and diameters for different vessel requirements.",
+            "The pipe body is divided into a thermoplastic resin outer layer, a metal support layer, and a PTFE inner lining layer. It is soft and tough as a whole and has a high static pressure resistance of 600PSI (4127KPa).",
+          image: freepass3,
         },
       ],
     },
@@ -704,22 +741,15 @@ function Products() {
           "Guiding Catheter Compatibility (min.)",
         ],
         // Product data
-        ...products[selectedProduct].specs.map((spec, index) => (
-          <motion.tr
-            key={spec.catalogNo}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <td>{spec.catalogNo}</td>
-            <td>{spec.diameter}</td>
-            <td>{spec.length}</td>
-            <td>{spec.compatibility}</td>
-            <td>{spec.sheath}</td>
-            <td>{spec.retrievalSheath}</td>
-            <td>{spec.guidingCatheter}</td>
-          </motion.tr>
-        )),
+        ...products[selectedProduct].specs.map((spec) => [
+          spec.catalogNo,
+          spec.diameter,
+          spec.length,
+          spec.compatibility,
+          spec.sheath,
+          spec.retrievalSheath,
+          spec.guidingCatheter,
+        ]),
       ];
 
       // Create Excel workbook
@@ -1013,20 +1043,63 @@ function Products() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
-              className="features-grid"
+              className="features-section"
             >
-              {products[selectedProduct].features.map((feature, index) => (
+              {selectedProduct === "proender" && (
                 <motion.div
-                  key={index}
-                  className="feature-card"
+                  className="features-cover"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ duration: 0.5 }}
                 >
-                  <h3>{feature.title}</h3>
-                  <p>{feature.description}</p>
+                  <img src={proender5} alt="Proender Features" />
+                  <h2 className="cover-title">
+                    Proender® Disposable Embolic Protection Device
+                  </h2>
                 </motion.div>
-              ))}
+              )}
+              {selectedProduct === "perrdenser" && (
+                <motion.div
+                  className="features-cover"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <img src={perdenser7} alt="Perdenser Features" />
+                </motion.div>
+              )}
+              {selectedProduct === "freepass" && (
+                <motion.div
+                  className="features-cover"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <img src={freepass4} alt="Freepass Features" />
+                  <h2 className="cover-title">
+                    Freepass® Self-Expanding Nitinol Stent
+                  </h2>
+                </motion.div>
+              )}
+              <div className="features-grid">
+                {products[selectedProduct].features.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    className="feature-card"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    {feature.image && feature.image !== perdenser7 && (
+                      <div className="feature-image">
+                        <img src={feature.image} alt={feature.title} />
+                      </div>
+                    )}
+                    <h3>{feature.title}</h3>
+                    <p>{feature.description}</p>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
           )}
         </div>
