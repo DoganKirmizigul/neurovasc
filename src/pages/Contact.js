@@ -22,13 +22,16 @@ function Contact() {
     setStatus({ submitting: true, submitted: false, error: null });
 
     try {
-      const response = await fetch("http://localhost:3001/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://neurovasc.onrender.com/api/send-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
