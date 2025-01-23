@@ -126,7 +126,7 @@ function Home() {
             <h3>
               <motion.span>{rounded2}</motion.span>+
             </h3>
-            <p>Successful Applications</p>
+            <p>Case Support</p>
           </motion.div>
           <motion.div
             className="stat-item"
@@ -204,9 +204,9 @@ function Home() {
             <h3>Freepass®</h3>
             <p className="product-subtitle">Microcatheter</p>
             <p>
-              High-flexibility self-expanding stent system specifically
-              engineered for peripheral vascular applications with superior
-              navigability.
+              Freepass is designed to delivery of interventional devices
+              provides enhanced access to the treatment site, improved stent
+              trackability, and greater stent deployment accuracy.
             </p>
             <Link to="/products?product=freepass" className="learn-more-btn">
               Learn More
