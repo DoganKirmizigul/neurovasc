@@ -16,14 +16,20 @@ import freepass4 from "../assets/images/freepass/freepass4.jpg";
 import freepass1 from "../assets/images/freepass/freepass1.jpg";
 import freepass2 from "../assets/images/freepass/freepass2.jpg";
 import freepass3 from "../assets/images/freepass/freepass3.jpg";
+import perfiller1 from "../assets/images/perfiller/perfiller1.jpg";
+import perfiller2 from "../assets/images/perfiller/perfiller2.jpg";
+import perfiller3 from "../assets/images/perfiller/perfiller3.jpg";
+import perfiller4 from "../assets/images/perfiller/perfiller4.png";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import proenderPDF from "../assets/pdfs/proender.pdf";
 import perdenserPDF from "../assets/pdfs/perdenser.pdf";
 import freepassPDF from "../assets/pdfs/freepass.pdf";
+import perfillerPDF from "../assets/pdfs/perfiller.pdf";
 import proenderIFUPDF from "../assets/pdfs/proender_ifu.pdf";
 import perdenserIFUPDF from "../assets/pdfs/perdenser_ifu.pdf";
 import freepassIFUPDF from "../assets/pdfs/freepass_ifu.pdf";
+import perfillerIFUPDF from "../assets/pdfs/perfiller_ifu.pdf";
 import { Link, useLocation } from "react-router-dom";
 
 function Products() {
@@ -31,6 +37,7 @@ function Products() {
   const [selectedProduct, setSelectedProduct] = useState("proender");
   const [activeTab, setActiveTab] = useState("specifications");
   const [currentPage, setCurrentPage] = useState(1);
+  const [coilType, setCoilType] = useState("3D");
   const itemsPerPage = 20;
 
   useEffect(() => {
@@ -646,6 +653,666 @@ function Products() {
         },
       ],
     },
+    perfiller: {
+      title: "Perfiller®",
+      subtitle: " Expansible Embolic Coil System",
+      description: "Expansible Embolic Coil System",
+      specs: [
+        {
+          softness: "Extra Soft",
+          specs3D: [
+            {
+              catalogNo: "TJCHYF0102",
+              loopDia: "1.5",
+              length: "2",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1.502",
+              loopDia: "2",
+              length: "2",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1.503",
+              loopDia: "2",
+              length: "2",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0202",
+              loopDia: "2.5",
+              length: "2",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0204",
+              loopDia: "2.5",
+              length: "4",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0206",
+              loopDia: "2.5",
+              length: "6",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF2.502",
+              loopDia: "3",
+              length: "4",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF2.504",
+              loopDia: "3",
+              length: "6",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF2.506",
+              loopDia: "3",
+              length: "10",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0304",
+              loopDia: "3",
+              length: "5",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0306",
+              loopDia: "4",
+              length: "10",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0308",
+              loopDia: "4",
+              length: "5",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0310",
+              loopDia: "4",
+              length: "10",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0405",
+              loopDia: "4",
+              length: "5",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF040B",
+              loopDia: "4",
+              length: "10",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0410",
+              loopDia: "4",
+              length: "10",
+              coilStructure: "Complex",
+            },
+          ],
+          specs2D: [
+            {
+              catalogNo: "TJCHYL0102",
+              loopDia: "1",
+              length: "2",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL1.501",
+              loopDia: "1.5",
+              length: "1",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL1.502",
+              loopDia: "1.5",
+              length: "2",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL1.504",
+              loopDia: "1.5",
+              length: "4",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0201",
+              loopDia: "2",
+              length: "1",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0202",
+              loopDia: "2",
+              length: "2",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0203",
+              loopDia: "2",
+              length: "3",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0204",
+              loopDia: "2",
+              length: "4",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0206",
+              loopDia: "2",
+              length: "6",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0208",
+              loopDia: "2",
+              length: "8",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL2.502",
+              loopDia: "2.5",
+              length: "2",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL2.504",
+              loopDia: "2.5",
+              length: "4",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL2.506",
+              loopDia: "2.5",
+              length: "6",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0302",
+              loopDia: "3",
+              length: "2",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0303",
+              loopDia: "3",
+              length: "3",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0304",
+              loopDia: "3",
+              length: "4",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0306",
+              loopDia: "3",
+              length: "6",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0308",
+              loopDia: "3",
+              length: "8",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0310",
+              loopDia: "3",
+              length: "10",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0312",
+              loopDia: "3",
+              length: "12",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0404",
+              loopDia: "4",
+              length: "4",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0406",
+              loopDia: "4",
+              length: "6",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0408",
+              loopDia: "4",
+              length: "8",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0410",
+              loopDia: "4",
+              length: "10",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0415",
+              loopDia: "4",
+              length: "15",
+              coilStructure: "Helical",
+            },
+          ],
+        },
+        {
+          softness: "Soft",
+          specs3D: [
+            {
+              catalogNo: "TJCHYF0510",
+              loopDia: "5",
+              length: "10",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0515",
+              loopDia: "5",
+              length: "15",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0612",
+              loopDia: "6",
+              length: "12",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0620",
+              loopDia: "6",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0715",
+              loopDia: "7",
+              length: "15",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0720",
+              loopDia: "7",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0728",
+              loopDia: "7",
+              length: "28",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0817",
+              loopDia: "8",
+              length: "17",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0830",
+              loopDia: "9",
+              length: "30",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0920",
+              loopDia: "9",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0930",
+              loopDia: "9",
+              length: "30",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1020",
+              loopDia: "10",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1030",
+              loopDia: "10",
+              length: "30",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1120",
+              loopDia: "11",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1130",
+              loopDia: "11",
+              length: "30",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYFI 140",
+              loopDia: "11",
+              length: "40",
+              coilStructure: "Complex",
+            },
+          ],
+          specs2D: [
+            {
+              catalogNo: "TJCH0404",
+              loopDia: "4",
+              length: "4",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH0406",
+              loopDia: "4",
+              length: "6",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH0408",
+              loopDia: "4",
+              length: "8",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH0410",
+              loopDia: "4",
+              length: "10",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH0510",
+              loopDia: "5",
+              length: "10",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH0515",
+              loopDia: "5",
+              length: "15",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH0610",
+              loopDia: "6",
+              length: "10",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH0615",
+              loopDia: "6",
+              length: "15",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0620",
+              loopDia: "6",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0625",
+              loopDia: "6",
+              length: "25",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0710",
+              loopDia: "7",
+              length: "10",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0720",
+              loopDia: "7",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0730",
+              loopDia: "7",
+              length: "30",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0810",
+              loopDia: "8",
+              length: "10",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0820",
+              loopDia: "8",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0830",
+              loopDia: "8",
+              length: "30",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0930",
+              loopDia: "9",
+              length: "30",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL0935",
+              loopDia: "9",
+              length: "35",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYL1030",
+              loopDia: "10",
+              length: "30",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCHYLI 040",
+              loopDia: "10",
+              length: "40",
+              coilStructure: "Helical",
+            },
+          ],
+        },
+        {
+          softness: "Standard",
+          specs3D: [
+            {
+              catalogNo: "TJCHYF0720",
+              loopDia: "7",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0820",
+              loopDia: "8",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF0920",
+              loopDia: "9",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1020",
+              loopDia: "10",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1120",
+              loopDia: "11",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1220",
+              loopDia: "12",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1320",
+              loopDia: "13",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1420",
+              loopDia: "14",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1520",
+              loopDia: "15",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1620",
+              loopDia: "16",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF1820",
+              loopDia: "18",
+              length: "20",
+              coilStructure: "Complex",
+            },
+            {
+              catalogNo: "TJCHYF2020",
+              loopDia: "20",
+              length: "20",
+              coilStructure: "Complex",
+            },
+          ],
+          specs2D: [
+            {
+              catalogNo: "TJCH0720",
+              loopDia: "7",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH0820",
+              loopDia: "8",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH0920",
+              loopDia: "9",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH1020",
+              loopDia: "10",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH1120",
+              loopDia: "11",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH1220",
+              loopDia: "12",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH1320",
+              loopDia: "13",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH1420",
+              loopDia: "14",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH1520",
+              loopDia: "15",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH1620",
+              loopDia: "16",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH1820",
+              loopDia: "18",
+              length: "20",
+              coilStructure: "Helical",
+            },
+            {
+              catalogNo: "TJCH2020",
+              loopDia: "20",
+              length: "20",
+              coilStructure: "Helical",
+            },
+          ],
+        },
+      ],
+      features: [
+        {
+          title: "Superior Crossing Ability",
+          description:
+            "The polymer thread swells when exposed to water, which effectively increases the embolization density, immediately achieves a compact embolization effect, and effectively reduces the long-term recurrence rate.",
+          image: perfiller1,
+        },
+        {
+          title: "Precise Sizing",
+          description:
+            "The expansion of the polymer wire can effectively increase the stability of the ring body and avoid the compression of the packed spring coil under the impact of blood flow, thereby ensuring long-term effective sealing of the tumor neck, eliminating 'dog ear signs', and effectively reducing the recurrence rate.",
+          image: perfiller2,
+        },
+        {
+          title: "Strong Pushability",
+          description:
+            "The metal occupancy rate of the expansion ring of the same length is lower, the ring body is softer, and the effectiveness and safety during use are improved. The smallest ring diameter is 1 mm and a variety of half-size rings provide more options for small or tiny aneurysms and closing. The new push system makes the transmission of the push rod mechanics more effective, and the push process is easier and smoother.",
+          image: perfiller3,
+        },
+        {
+          title: "Safe and Reliable Instant Release System",
+          description:
+            "The release point adopts advanced polymer wire instant fuse technology to achieve second release. The shape of the freed tail is smooth and soft, and there is no additional chemical residue. The operation process is simple, safe, stable, and controllable!",
+          image: perdenser6,
+        },
+      ],
+    },
   };
 
   const handleDownload = () => {
@@ -790,6 +1457,9 @@ function Products() {
         break;
       case "freepass":
         pdfUrl = type === "brochure" ? freepassPDF : freepassIFUPDF;
+        break;
+      case "perfiller":
+        pdfUrl = type === "brochure" ? perfillerPDF : perfillerIFUPDF;
         break;
       default:
         return;
@@ -1019,6 +1689,74 @@ function Products() {
                     </tbody>
                   </table>
                 </>
+              ) : selectedProduct === "perfiller" ? (
+                <>
+                  <div className="coil-type-selector">
+                    <button
+                      className={`coil-type-button ${
+                        coilType === "3D" ? "active" : ""
+                      }`}
+                      onClick={() => setCoilType("3D")}
+                    >
+                      3D Products
+                    </button>
+                    <button
+                      className={`coil-type-button ${
+                        coilType === "2D" ? "active" : ""
+                      }`}
+                      onClick={() => setCoilType("2D")}
+                    >
+                      2D Products
+                    </button>
+                  </div>
+                  <div className="specifications-table">
+                    <table className="coil-structure-table">
+                      <thead>
+                        <tr>
+                          <th>Softness</th>
+                          <th>Specification</th>
+                          <th>Loop Dia. (mm)</th>
+                          <th>Length (cm)</th>
+                          <th>Coil Structure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {products[selectedProduct].specs.map((specGroup) => {
+                          // Eğer 2D seçiliyse ve softness "Standard" ise, bu grubu atla
+                          if (
+                            coilType === "2D" &&
+                            specGroup.softness === "Standard"
+                          ) {
+                            return null;
+                          }
+
+                          return specGroup[
+                            coilType === "3D" ? "specs3D" : "specs2D"
+                          ].map((spec, index) => (
+                            <tr key={`${specGroup.softness}-${index}`}>
+                              {index === 0 && (
+                                <td
+                                  rowSpan={
+                                    specGroup[
+                                      coilType === "3D" ? "specs3D" : "specs2D"
+                                    ].length
+                                  }
+                                  className="softness-cell"
+                                >
+                                  {specGroup.softness}
+                                </td>
+                              )}
+                              <td>{spec.catalogNo}</td>
+                              <td>{spec.loopDia}</td>
+                              <td>{spec.length}</td>
+                              <td>{spec.coilStructure}</td>
+                            </tr>
+                          ));
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
               ) : (
                 // Freepass için mevcut tablo yapısı
                 <>
@@ -1076,9 +1814,6 @@ function Products() {
                   transition={{ duration: 0.5 }}
                 >
                   <img src={proender5} alt="Proender Features" />
-                  <h2 className="cover-title">
-                    Proender® Disposable Embolic Protection Device
-                  </h2>
                 </motion.div>
               )}
               {selectedProduct === "perrdenser" && (
@@ -1099,9 +1834,16 @@ function Products() {
                   transition={{ duration: 0.5 }}
                 >
                   <img src={freepass4} alt="Freepass Features" />
-                  <h2 className="cover-title">
-                    Freepass® Self-Expanding Nitinol Stent
-                  </h2>
+                </motion.div>
+              )}
+              {selectedProduct === "perfiller" && (
+                <motion.div
+                  className="features-cover"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <img src={perfiller4} alt="Perfiller Features" />
                 </motion.div>
               )}
               <div className="features-grid">
@@ -1113,11 +1855,13 @@ function Products() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    {feature.image && feature.image !== perdenser7 && (
-                      <div className="feature-image">
-                        <img src={feature.image} alt={feature.title} />
-                      </div>
-                    )}
+                    {feature.image &&
+                      feature.image !== perdenser7 &&
+                      feature.image !== perfiller4 && (
+                        <div className="feature-image">
+                          <img src={feature.image} alt={feature.title} />
+                        </div>
+                      )}
                     <h3>{feature.title}</h3>
                     <p>{feature.description}</p>
                   </motion.div>
